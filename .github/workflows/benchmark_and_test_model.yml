@@ -18,6 +18,6 @@ jobs:
 
       run: |
         pip install --user --upgrade pip
-        pip install -r /requirements.txt
+        pip install -r ./dependencies/requirements.txt
         python ./scripts/stage_model_to_production.py
 
