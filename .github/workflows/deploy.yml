@@ -1,0 +1,24 @@
+# Name of the workflow
+name: Deploy to sagemaker
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Deploy production-ready image from AWS ECR to Sagemaker
+      id: deploy_to_prod
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        REGION: ${{ secrets.REGION }}
+        IMAGE_URI: ${{ secrets.IMAGE_URI }}
+        ARN_ROLE: ${{ secrets.ARN_ROLE }}
+
+      run: |
+        pip install --user --upgrade pip
+        pip install -r /requirements.txt
+        python ./scripts/deploy.py

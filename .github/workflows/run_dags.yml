@@ -1,0 +1,26 @@
+# Name of the workflow
+name: Run Airflow DAG 
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Loading the secrets
+        secrets: |
+          "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}"
+          "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          "REGION=${{ secrets.REGION }}"
+          "LOGIN=${{ secrets.LOGIN }}"
+          "PASSWORD=${{ secrets.PASSWORD }}"
+          "HOST=${{ secrets.HOST }}"
+          "ACCOUNT=${{ secrets.ACCOUNT }}"
+          "WAREHOUSE=${{ secrets.WAREHOUSE }}"
+          "DATABASE=${{ secrets.DATABASE }}"
+          "SCHEMA=${{ secrets.SCHEMA }}"
+
+    - name: Run airflow dag
+      run: make run_dag

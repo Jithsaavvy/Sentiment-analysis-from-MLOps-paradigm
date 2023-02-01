@@ -1,0 +1,39 @@
+[tweets-scraping]
+search_query = "mlops"
+tweet_limit = 50000
+
+[aws]
+connection_id = "s3_connection"
+s3_bucket_name = "twitter-data-bucket"
+temp_data_path = "/opt/airflow/dags/"
+
+[files]
+raw_file_name = "raw_tweets.parquet"
+labelled_file_name = "labelled_tweets.parquet"
+preprocessed_file_name = "preprocessed_tweets.parquet"
+test_data = "./scripts/test_data/test_data.parquet"
+
+[train-parameters]
+batch_size = 128
+num_classes = 3
+embedding_dim = 128
+sequence_length = 512
+num_epochs = 4
+learning_rate = 2e-3
+
+[model-tracking]
+experiment = false
+experiment_name = "sentiment_classifier"
+run_name = "sc_run3"
+mlflow_tracking_uri = "http://ec2-44-203-120-100.compute-1.amazonaws.com:5000/"
+
+[model-registry]
+model_name = "sentiment_classifier"
+filter_string = "name LIKE 'sentiment%'"
+
+[model-deploy]
+endpoint_name = "sentiment-classifier"
+
+[misc]
+query = "SELECT * from PROCESSED_TWEET"
+table_name = "PROCESSED_TWEETS"
