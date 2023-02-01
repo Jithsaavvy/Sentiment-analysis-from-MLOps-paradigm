@@ -1,7 +1,9 @@
 # Name of the workflow
 name: Test and benchmark models 
 
-on: workflow_dispatch
+on:
+  push:
+    branches: [main]
 
 jobs:
   build:
