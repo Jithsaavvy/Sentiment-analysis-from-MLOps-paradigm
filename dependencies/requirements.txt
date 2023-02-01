@@ -12,3 +12,4 @@ apache-airflow-providers-snowflake==4.0.2
 apache-airflow-providers-docker==3.4.0
 spacy==3.5.0
 mlflow==2.1.1
+checklist==0.0.11
