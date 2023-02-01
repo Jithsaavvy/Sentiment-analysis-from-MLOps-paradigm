@@ -19,5 +19,6 @@ jobs:
         ARN_ROLE: ${{ secrets.ARN_ROLE }}
 
       run: |
+        python3 -m pip install --upgrade pip
         pip install -r ./dependencies/requirements.txt
         python ./scripts/deploy.py
