@@ -17,7 +17,7 @@ jobs:
         REGION: ${{ secrets.REGION }}
 
       run: |
-        pip3 install -r ./dependencies/requirements.txt
+        pip install --upgrade ./dependencies/requirements.txt
         python -m spacy download en_core_web_sm
         python ./scripts/stage_model_to_production.py
 
